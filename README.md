@@ -2,7 +2,7 @@
 
 Unpredictable darkness, love of death and turbulence, loveless and grudgless in the world, desperate love, unpredictable death and love, hurt but strong mind, unreturnable path and road.
 
-[![GoDoc](https://pkg.go.dev/badge/pkg.go.dev/github.com/FlowerLab/blackdatura)](https://pkg.go.dev/pkg.go.dev/github.com/FlowerLab/blackdatura)
+[![GoDoc](https://pkg.go.dev/badge/pkg.go.dev/github.com/FlowerLab/blackdatura)](https://pkg.go.dev/github.com/FlowerLab/blackdatura)
 [![Sourcegraph](https://sourcegraph.com/github.com/FlowerLab/blackdatura/-/badge.svg)](https://sourcegraph.com/github.com/FlowerLab/blackdatura?badge)
 [![Go Report Card](https://goreportcard.com/badge/github.com/FlowerLab/blackdatura)](https://goreportcard.com/report/github.com/FlowerLab/blackdatura)
 [![Release](https://img.shields.io/github/v/release/FlowerLab/blackdatura.svg)](https://github.com/FlowerLab/blackdatura/releases)
