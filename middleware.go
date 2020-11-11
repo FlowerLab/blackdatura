@@ -75,7 +75,7 @@ func RecoveryWithZap() gin.HandlerFunc {
 						zap.String("request", string(httpRequest)),
 					)
 					// If the connection is dead, we can't write a status to it.
-					c.Error(err.(error)) // nolint: errcheck
+					_ = c.Error(err.(error))
 					c.Abort()
 					return
 				}
