@@ -6,8 +6,12 @@ import (
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"gopkg.in/natefinch/lumberjack.v2"
 )
+
+type logSink interface {
+	String() string
+	Sink(*url.URL) (zap.Sink, error)
+}
 
 // With creates a child logger and adds structured context to it
 func With(name string) *zap.Logger {
@@ -21,16 +25,8 @@ func New() *zap.Logger {
 
 var logger *zap.Logger
 
-type lumberjackSink struct {
-	*lumberjack.Logger
-}
-
-// Sync implements zap.Sink. The remaining methods are implemented
-// by the embedded *lumberjack.Logger.
-func (lumberjackSink) Sync() error { return nil }
-
 // Init logger
-func Init(logPath, level string, dev bool) {
+func Init(level string, dev bool, fn ...logSink) {
 	encoderConfig := zapcore.EncoderConfig{
 		TimeKey:        "ts",
 		LevelKey:       "level",
@@ -44,29 +40,27 @@ func Init(logPath, level string, dev bool) {
 		EncodeDuration: zapcore.SecondsDurationEncoder,
 		EncodeCaller:   zapcore.ShortCallerEncoder,
 	}
-	ll := lumberjack.Logger{
-		Filename:   logPath,
-		MaxSize:    1024, //MB
-		MaxBackups: 30,
-		MaxAge:     90, //days
-		Compress:   true,
-	}
-	zap.RegisterSink("lumberjack", func(*url.URL) (zap.Sink, error) {
-		return lumberjackSink{
-			Logger: &ll,
-		}, nil
-	})
 
-	loggerConfig := zap.Config{
-		Level:         zap.NewAtomicLevelAt(zapLevel(level)),
-		Development:   dev,
-		Encoding:      "console",
-		EncoderConfig: encoderConfig,
-		OutputPaths:   []string{fmt.Sprintf("lumberjack:%s", logPath)},
+	outputPaths := make([]string, 0, len(fn)+1)
+
+	for _, v := range fn {
+		if err := zap.RegisterSink(v.String(), v.Sink); err != nil {
+			panic(err)
+		}
+		outputPaths = append(outputPaths, v.String()+":/tmp")
 	}
 
 	if dev {
-		loggerConfig.OutputPaths = append(loggerConfig.OutputPaths, "stderr")
+		outputPaths = append(outputPaths, "stdout")
+	}
+
+	loggerConfig := zap.Config{
+		Level:            zap.NewAtomicLevelAt(zapLevel(level)),
+		Development:      dev,
+		Encoding:         "console",
+		EncoderConfig:    encoderConfig,
+		OutputPaths:      outputPaths,
+		ErrorOutputPaths: []string{"stderr"},
 	}
 
 	var err error
@@ -88,6 +82,5 @@ func zapLevel(s string) zapcore.Level {
 	case "error":
 		return zap.ErrorLevel
 	}
-
 	return zap.FatalLevel
 }

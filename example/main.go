@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	log.Init("logs/log", "debug", true)
+	log.Init("debug", true, log.DefaultLumberjack())
 
 	i := log.New()
 	i.Info("Black Datura")
