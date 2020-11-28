@@ -17,8 +17,7 @@ import (
 //
 // Requests with errors are logged using zap.Error().
 // Requests without errors are logged using zap.Info().
-func Ginzap() gin.HandlerFunc {
-	l := With("ginzap")
+func Ginzap(l *zap.Logger) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now()
 		// some evil middlewares modify this values
@@ -29,31 +28,23 @@ func Ginzap() gin.HandlerFunc {
 		end := time.Now()
 		latency := end.Sub(start)
 
-		if len(c.Errors) > 0 {
-			// Append error field if this is an erroneous request.
-			for _, e := range c.Errors.Errors() {
-				l.Error(e)
-			}
-		} else {
-			l.Info(path,
-				zap.Int("status", c.Writer.Status()),
-				zap.String("method", c.Request.Method),
-				zap.String("path", path),
-				zap.String("query", query),
-				zap.String("ip", c.ClientIP()),
-				zap.String("user-agent", c.Request.UserAgent()),
-				zap.String("time", end.String()),
-				zap.Duration("latency", latency),
-			)
-		}
+		l.Info(path,
+			zap.Int("status", c.Writer.Status()),
+			zap.String("method", c.Request.Method),
+			zap.String("path", path),
+			zap.String("query", query),
+			zap.String("ip", c.ClientIP()),
+			zap.String("user-agent", c.Request.UserAgent()),
+			zap.String("time", end.String()),
+			zap.Duration("latency", latency),
+		)
 	}
 }
 
 // RecoveryWithZap returns a gin.HandlerFunc (middleware)
 // that recovers from any panics and logs requests using uber-go/zap.
 // All errors are logged using zap.Error().
-func RecoveryWithZap() gin.HandlerFunc {
-	l := With("gin recovery with zap")
+func RecoveryWithZap(l *zap.Logger) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		defer func() {
 			if err := recover(); err != nil {
