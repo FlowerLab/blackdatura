@@ -3,6 +3,7 @@ module github.com/FlowerLab/blackdatura
 go 1.15
 
 require (
+	github.com/Shopify/sarama v1.27.2
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/onsi/ginkgo v1.14.2 // indirect
