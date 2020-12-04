@@ -13,8 +13,8 @@ Unpredictable darkness, love of death and turbulence, loveless and grudgless in 
 
 ## Introduction
 
-The secondary packaging of [zap][1] and [lumberjack][2], integrate [Gin][3] logging middleware.
-
+The secondary packaging of [zap][1] and [lumberjack][2], integrate [Gin][3] and [GORM][5] logging middleware.
+Added [Redis] [6] and [Kafaka] [7] output mode.
 
 ## Usage
 
@@ -32,9 +32,16 @@ See the [example](example/main.go).
 - [lumberjack][2]
 - [Gin][3]
 - [ginzap][4]
+- [GORM][5]
+- [Go Redis][6]
+- [sarama][7]
 
 
 [1]:https://github.com/uber-go/zap
 [2]:https://github.com/natefinch/lumberjack
 [3]:https://github.com/gin-gonic/gin
 [4]:https://github.com/gin-contrib/zap
+[5]:https://github.com/go-gorm/gorm
+[6]:https://github.com/go-redis/redis
+[7]:https://github.com/Shopify/sarama
+
