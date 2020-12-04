@@ -14,7 +14,7 @@ Unpredictable darkness, love of death and turbulence, loveless and grudgless in 
 ## Introduction
 
 The secondary packaging of [zap][1] and [lumberjack][2], integrate [Gin][3] and [GORM][5] logging middleware.
-Added [Redis] [6] and [Kafaka] [7] output mode.
+Added [Redis][6] and [Kafaka][7] output mode.
 
 ## Usage
 
