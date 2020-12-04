@@ -1,7 +1,8 @@
 package blackdatura
 
 import (
-	"github.com/go-redis/redis"
+	"context"
+	"github.com/go-redis/redis/v8"
 	"go.uber.org/zap"
 	"net/url"
 )
@@ -16,7 +17,7 @@ func Redis(addr, pwd, key string, db int) RedisSink {
 }
 
 func (r RedisSink) check() RedisSink {
-	if r.Client != nil && r.Client.Ping().Err() != nil {
+	if r.Client != nil && r.Client.Ping(context.Background()).Err() != nil {
 		return r
 	}
 	panic("redis client error")
@@ -42,7 +43,7 @@ func (r RedisSink) Close() error { return r.Client.Close() }
 
 // Write implement zap.Sink func Write
 func (r RedisSink) Write(b []byte) (n int, err error) {
-	return len(b), r.Client.Publish(r.Key, string(b)).Err()
+	return len(b), r.Client.Publish(context.Background(), r.Key, string(b)).Err()
 }
 
 // Sync implement zap.Sink func Sync

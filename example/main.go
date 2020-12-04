@@ -25,7 +25,8 @@ func main() {
 
 	r := gin.New()
 
-	r.Use(log.Ginzap(), log.RecoveryWithZap())
+	r.Use(log.Ginzap(log.With("gin zap")),
+		log.RecoveryWithZap(log.With("recovery with zap")))
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
@@ -35,5 +36,5 @@ func main() {
 		panic("An unexpected error happen!")
 	})
 
-	r.Run(":13079")
+	_ = r.Run(":13079")
 }
