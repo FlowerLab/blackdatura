@@ -20,7 +20,15 @@ func With(name string) *zap.Logger {
 
 // New return logger
 func New() *zap.Logger {
+	if logger == nil {
+		panic("logger is nil")
+	}
 	return logger
+}
+
+// Set zap logger
+func Set(l *zap.Logger) {
+	logger = l
 }
 
 var logger *zap.Logger
