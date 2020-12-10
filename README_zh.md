@@ -2,6 +2,7 @@
 
 不可预知的黑暗，死亡和颠沛流离的爱，凡间的无爱与无仇，绝望的爱，不可预知的死亡和爱，被伤害的坚韧创痍的心灵，生的不归之路
 
+[![JetBrains Open Source Licenses](https://img.shields.io/badge/-JetBrains%20Open%20Source%20License-000?style=flat-square&logo=JetBrains&logoColor=fff&labelColor=000)](https://www.jetbrains.com/?from=blackdatura)
 [![GoDoc](https://pkg.go.dev/badge/pkg.go.dev/github.com/FlowerLab/blackdatura)](https://pkg.go.dev/github.com/FlowerLab/blackdatura)
 [![Sourcegraph](https://sourcegraph.com/github.com/FlowerLab/blackdatura/-/badge.svg)](https://sourcegraph.com/github.com/FlowerLab/blackdatura?badge)
 [![Go Report Card](https://goreportcard.com/badge/github.com/FlowerLab/blackdatura)](https://goreportcard.com/report/github.com/FlowerLab/blackdatura)
@@ -11,7 +12,7 @@
 
 ## 介绍
 
-[zap][1] 和 [lumberjack][2] 的二次封装，集成了 [Gin][3] 和 [GORM][5] 的 logging 中间件，添加了 [Redis][6] 和 [Kafaka][7] 输出方式
+[zap][1] 和 [lumberjack][2] 的二次封装，集成了 [Gin][3] 和 [GORM][5] 的 logging 中间件，添加了 [Redis][6] 和 [Kafka][7] 输出方式
 
 
 ## 使用

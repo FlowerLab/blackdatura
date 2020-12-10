@@ -2,6 +2,7 @@
 
 Unpredictable darkness, love of death and turbulence, loveless and grudgless in the world, desperate love, unpredictable death and love, hurt but strong mind, unreturnable path and road.
 
+[![JetBrains Open Source Licenses](https://img.shields.io/badge/-JetBrains%20Open%20Source%20License-000?style=flat-square&logo=JetBrains&logoColor=fff&labelColor=000)](https://www.jetbrains.com/?from=blackdatura)
 [![GoDoc](https://pkg.go.dev/badge/pkg.go.dev/github.com/FlowerLab/blackdatura)](https://pkg.go.dev/github.com/FlowerLab/blackdatura)
 [![Sourcegraph](https://sourcegraph.com/github.com/FlowerLab/blackdatura/-/badge.svg)](https://sourcegraph.com/github.com/FlowerLab/blackdatura?badge)
 [![Go Report Card](https://goreportcard.com/badge/github.com/FlowerLab/blackdatura)](https://goreportcard.com/report/github.com/FlowerLab/blackdatura)
@@ -14,7 +15,7 @@ Unpredictable darkness, love of death and turbulence, loveless and grudgless in 
 ## Introduction
 
 The secondary packaging of [zap][1] and [lumberjack][2], integrate [Gin][3] and [GORM][5] logging middleware.
-Added [Redis][6] and [Kafaka][7] output mode.
+Added [Redis][6] and [Kafka][7] output mode.
 
 ## Usage
 
