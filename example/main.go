@@ -1,9 +1,9 @@
 package main
 
 import (
-	log "github.com/FlowerLab/blackdatura"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	log "go.x2ox.com/blackdatura"
 )
 
 func main() {

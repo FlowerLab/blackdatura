@@ -1,4 +1,4 @@
-module github.com/FlowerLab/blackdatura
+module go.x2ox.com/blackdatura
 
 go 1.15
 
