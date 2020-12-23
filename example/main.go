@@ -3,16 +3,16 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	log "go.x2ox.com/blackdatura"
+	"go.x2ox.com/blackdatura"
 )
 
 func main() {
-	log.Init("debug", true, log.DefaultLumberjack())
+	blackdatura.Init("debug", true, blackdatura.DefaultLumberjack())
 
-	i := log.New()
+	i := blackdatura.New()
 	i.Info("Black Datura")
 
-	j := log.With("flowers meaning")
+	j := blackdatura.With("flowers meaning")
 	j.Debug("black datura",
 		zap.Any("Unpredictable darkness", "不可预知的黑暗"),
 		zap.Any("love of death and turbulence", "死亡和颠沛流离的爱"),
@@ -25,8 +25,8 @@ func main() {
 
 	r := gin.New()
 
-	r.Use(log.Ginzap(log.With("gin zap")),
-		log.RecoveryWithZap(log.With("recovery with zap")))
+	r.Use(blackdatura.Ginzap(blackdatura.With("gin zap")),
+		blackdatura.RecoveryWithZap(blackdatura.With("recovery with zap")))
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
