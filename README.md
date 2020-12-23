@@ -1,4 +1,4 @@
-# Black Datura
+# [Black Datura](https://github.com/FlowerLab/blackdatura)
 
 Unpredictable darkness, love of death and turbulence, loveless and grudgless in the world, desperate love, unpredictable death and love, hurt but strong mind, unreturnable path and road.
 
@@ -10,7 +10,7 @@ Unpredictable darkness, love of death and turbulence, loveless and grudgless in 
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 
-> [中文文档](README_zh.md)
+> [中文文档](https://github.com/FlowerLab/blackdatura/blob/master/README_zh.md)
 
 ## Introduction
 
@@ -21,11 +21,11 @@ Added [Redis][6] and [Kafka][7] output mode.
 
 ```go
 import (
-	log "github.com/FlowerLab/blackdatura"
+	log "go.x2ox.com/blackdatura"
 )
 ```
 
-See the [example](example/main.go).
+See the [example](https://github.com/FlowerLab/blackdatura/blob/master/example/main.go).
 
 
 ## Thanks

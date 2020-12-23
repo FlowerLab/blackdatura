@@ -1,4 +1,4 @@
-# 黑曼陀罗
+# [黑曼陀罗](https://github.com/FlowerLab/blackdatura)
 
 不可预知的黑暗，死亡和颠沛流离的爱，凡间的无爱与无仇，绝望的爱，不可预知的死亡和爱，被伤害的坚韧创痍的心灵，生的不归之路
 
@@ -19,7 +19,7 @@
 
 ```go
 import (
-	log "github.com/FlowerLab/blackdatura"
+    log "go.x2ox.com/blackdatura"
 )
 ```
 
