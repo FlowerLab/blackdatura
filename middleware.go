@@ -86,11 +86,13 @@ func RecoveryWithZap(l *zap.Logger) gin.HandlerFunc {
 }
 
 func Recovery(l *zap.Logger) {
-	if err := recover(); err != nil {
-		l.Error("[Recovery from panic]",
-			zap.Time("time", time.Now()),
-			zap.Any("error", err),
-			zap.String("stack", string(debug.Stack())),
-		)
-	}
+	defer func() {
+		if err := recover(); err != nil {
+			l.Error("[Recovery from panic]",
+				zap.Time("time", time.Now()),
+				zap.Any("error", err),
+				zap.String("stack", string(debug.Stack())),
+			)
+		}
+	}()
 }
