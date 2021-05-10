@@ -3,7 +3,7 @@
 不可预知的黑暗，死亡和颠沛流离的爱，凡间的无爱与无仇，绝望的爱，不可预知的死亡和爱，被伤害的坚韧创痍的心灵，生的不归之路
 
 [![JetBrains Open Source Licenses](https://img.shields.io/badge/-JetBrains%20Open%20Source%20License-000?style=flat-square&logo=JetBrains&logoColor=fff&labelColor=000)](https://www.jetbrains.com/?from=blackdatura)
-[![GoDoc](https://pkg.go.dev/badge/pkg.go.dev/github.com/FlowerLab/blackdatura)](https://pkg.go.dev/github.com/FlowerLab/blackdatura)
+[![GoDoc](https://pkg.go.dev/badge/pkg.go.dev/go.x2ox.com/blackdatura)](https://pkg.go.dev/go.x2ox.com/blackdatura)
 [![Sourcegraph](https://sourcegraph.com/github.com/FlowerLab/blackdatura/-/badge.svg)](https://sourcegraph.com/github.com/FlowerLab/blackdatura?badge)
 [![Go Report Card](https://goreportcard.com/badge/github.com/FlowerLab/blackdatura)](https://goreportcard.com/report/github.com/FlowerLab/blackdatura)
 [![Release](https://img.shields.io/github/v/release/FlowerLab/blackdatura.svg)](https://github.com/FlowerLab/blackdatura/releases)
