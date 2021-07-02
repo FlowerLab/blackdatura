@@ -6,6 +6,8 @@ import (
 	"go.x2ox.com/blackdatura"
 )
 
+// go build -tags "gin" go.x2ox.com/blackdatura/example
+
 func main() {
 	blackdatura.Init("debug", true, blackdatura.DefaultLumberjack())
 

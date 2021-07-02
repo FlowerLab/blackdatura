@@ -1,10 +1,13 @@
+// +build bd_all bd_redis redis
+
 package blackdatura
 
 import (
 	"context"
+	"net/url"
+
 	"github.com/go-redis/redis/v8"
 	"go.uber.org/zap"
-	"net/url"
 )
 
 // Redis create redis sink instance

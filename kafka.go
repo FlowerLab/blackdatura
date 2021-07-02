@@ -1,10 +1,13 @@
+// +build bd_all bd_kafka kafka
+
 package blackdatura
 
 import (
-	"github.com/Shopify/sarama"
-	"go.uber.org/zap"
 	"net/url"
 	"time"
+
+	"github.com/Shopify/sarama"
+	"go.uber.org/zap"
 )
 
 // DefaultKafka create a default kafka sink instance
