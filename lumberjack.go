@@ -1,9 +1,10 @@
 package blackdatura
 
 import (
+	"net/url"
+
 	"go.uber.org/zap"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"net/url"
 )
 
 type LumberjackSink struct {
@@ -40,7 +41,7 @@ func DefaultLumberjack() LumberjackSink {
 	return Lumberjack("/var/logs/log", 1024, 30, 90, true)
 }
 
-// Lumberjack create lumberjack sink instance
+// LumberjackClient create lumberjack sink instance
 func LumberjackClient(l *lumberjack.Logger) LumberjackSink {
 	return LumberjackSink{Logger: l}
 }
