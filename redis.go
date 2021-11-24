@@ -17,11 +17,11 @@ func Redis(addr, pwd, key string, db int) RedisSink {
 		Addr:     addr,
 		Password: pwd,
 		DB:       db,
-	})).check()
+	}))
 }
 
 func (r RedisSink) check() RedisSink {
-	if r.Client != nil && r.Client.Ping(context.Background()).Err() != nil {
+	if r.Client != nil && r.Client.Ping(context.Background()).Err() == nil {
 		return r
 	}
 	panic("redis client error")
