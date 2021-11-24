@@ -8,7 +8,7 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-type logSink interface {
+type LoggerSink interface {
 	String() string
 	Sink(*url.URL) (zap.Sink, error)
 }
@@ -34,18 +34,22 @@ func Set(l *zap.Logger) {
 var logger *zap.Logger
 
 // Init logger
-func Init(level string, dev bool, fn ...logSink) {
+func Init(level string, dev bool, fn ...LoggerSink) {
 	encoderConfig := zapcore.EncoderConfig{
-		TimeKey:        "ts",
-		LevelKey:       "level",
-		NameKey:        "logger",
-		CallerKey:      "caller",
-		MessageKey:     "msg",
-		LineEnding:     zapcore.DefaultLineEnding,
-		EncodeLevel:    zapcore.LowercaseLevelEncoder,
-		EncodeTime:     zapcore.ISO8601TimeEncoder,
-		EncodeDuration: zapcore.SecondsDurationEncoder,
-		EncodeCaller:   zapcore.ShortCallerEncoder,
+		MessageKey:       "msg",
+		LevelKey:         "level",
+		TimeKey:          "ts",
+		NameKey:          "logger",
+		CallerKey:        "caller",
+		FunctionKey:      "",
+		StacktraceKey:    "",
+		LineEnding:       zapcore.DefaultLineEnding,
+		EncodeLevel:      zapcore.LowercaseLevelEncoder,
+		EncodeTime:       zapcore.ISO8601TimeEncoder,
+		EncodeDuration:   zapcore.SecondsDurationEncoder,
+		EncodeCaller:     zapcore.ShortCallerEncoder,
+		EncodeName:       nil,
+		ConsoleSeparator: "",
 	}
 
 	outputPaths := make([]string, 0, len(fn)+1)
@@ -64,7 +68,7 @@ func Init(level string, dev bool, fn ...logSink) {
 	loggerConfig := zap.Config{
 		Level:            zap.NewAtomicLevelAt(zapLevel(level)),
 		Development:      dev,
-		Encoding:         "console",
+		Encoding:         "json",
 		EncoderConfig:    encoderConfig,
 		OutputPaths:      outputPaths,
 		ErrorOutputPaths: []string{"stderr"},
