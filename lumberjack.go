@@ -1,3 +1,5 @@
+//go:build bd_all || bd_lumberjack || lumberjack
+
 package blackdatura
 
 import (

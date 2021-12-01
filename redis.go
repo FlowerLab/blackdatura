@@ -1,5 +1,4 @@
 //go:build bd_all || bd_redis || redis
-// +build bd_all bd_redis redis
 
 package blackdatura
 

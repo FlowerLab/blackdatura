@@ -1,4 +1,4 @@
-// +build bd_all bd_kafka kafka
+//go:build bd_all || bd_kafka || kafka
 
 package blackdatura
 

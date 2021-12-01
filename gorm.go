@@ -1,4 +1,4 @@
-// +build bd_all bd_gorm gorm
+//go:build bd_all || bd_gorm || gorm
 
 package blackdatura
 
