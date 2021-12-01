@@ -1,4 +1,4 @@
-// +build bd_all bd_gin gin
+//go:build bd_all || bd_gin || gin
 
 package blackdatura
 
@@ -14,11 +14,11 @@ import (
 	"go.uber.org/zap"
 )
 
-// Ginzap returns a gin.HandlerFunc (middleware) that logs requests using uber-go/zap.
+// Gin returns a gin.HandlerFunc (middleware) that logs requests using uber-go/zap.
 //
 // Requests with errors are logged using zap.Error().
 // Requests without errors are logged using zap.Info().
-func Ginzap(l *zap.Logger) gin.HandlerFunc {
+func Gin(l *zap.Logger) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now()
 		// some evil middlewares modify this values
