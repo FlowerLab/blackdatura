@@ -35,7 +35,7 @@ var logger *zap.Logger
 
 // Init logger
 func Init(level string, dev bool, fn ...LoggerSink) {
-	encoderConfig := zapcore.EncoderConfig{
+	InitWithConfig(level, dev, zapcore.EncoderConfig{
 		MessageKey:       "msg",
 		LevelKey:         "level",
 		TimeKey:          "ts",
@@ -50,17 +50,17 @@ func Init(level string, dev bool, fn ...LoggerSink) {
 		EncodeCaller:     zapcore.ShortCallerEncoder,
 		EncodeName:       nil,
 		ConsoleSeparator: "",
-	}
+	}, fn...)
+}
 
+func InitWithConfig(level string, dev bool, encoderConfig zapcore.EncoderConfig, fn ...LoggerSink) {
 	outputPaths := make([]string, 0, len(fn)+1)
-
 	for _, v := range fn {
 		if err := zap.RegisterSink(v.String(), v.Sink); err != nil {
 			panic(err)
 		}
-		outputPaths = append(outputPaths, v.String()+":/tmp")
+		outputPaths = append(outputPaths, v.String()+":/log")
 	}
-
 	if dev {
 		outputPaths = append(outputPaths, "stdout")
 	}
