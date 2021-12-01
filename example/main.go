@@ -1,12 +1,16 @@
+//go:build bd_all
+
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/requestid"
+	"github.com/gofiber/fiber/v2/utils"
 	"go.uber.org/zap"
 	"go.x2ox.com/blackdatura"
 )
 
-// go build -tags "gin" go.x2ox.com/blackdatura/example
+// go build -tags "ba_all" go.x2ox.com/blackdatura/example
 
 func main() {
 	blackdatura.Init("debug", true, blackdatura.DefaultLumberjack())
@@ -25,18 +29,33 @@ func main() {
 		zap.Any("unreturnable path and road", "生的不归之路"),
 	)
 
-	r := gin.New()
+	app := fiber.New()
 
-	r.Use(blackdatura.Ginzap(blackdatura.With("gin zap")),
-		blackdatura.RecoveryWithZap(blackdatura.With("recovery with zap")))
+	app.Use(
+		requestid.New(),
+		blackdatura.FiberLogger(i, blackdatura.FiberLoggerConfig{
+			Next:          nil,
+			Level:         "debug",
+			OutputHeader:  []string{"Cookie"},
+			OutputCookies: []string{"grafana_session"},
+			OutputLocals:  []string{"a"},
+			OutputBody:    true,
+			OutputResp:    true,
+		}),
+		requestid.New(requestid.Config{
+			Header: "X-Request-ID",
+			Generator: func() string {
+				return utils.UUID()
+			},
+		}),
+	)
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.String(200, "pong")
+	app.Get("/", func(c *fiber.Ctx) error {
+		c.Locals("AppID", 2)
+		return nil
 	})
 
-	r.GET("/panic", func(c *gin.Context) {
-		panic("An unexpected error happen!")
-	})
-
-	_ = r.Run(":13079")
+	if err := app.Listen(":13079"); err != nil {
+		i.Fatal("listen error", zap.Error(err))
+	}
 }
