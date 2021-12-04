@@ -22,9 +22,9 @@ type GormLogger struct {
 	IgnoreRecordNotFoundError bool
 }
 
-func NewGormLogger() *GormLogger {
+func Gorm(l *zap.Logger) *GormLogger {
 	return &GormLogger{
-		log:                       With("gorm log"),
+		log:                       l,
 		Level:                     zap.WarnLevel,
 		SlowThreshold:             100 * time.Millisecond,
 		SkipCallerLookup:          false,
