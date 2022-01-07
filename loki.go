@@ -34,7 +34,7 @@ type LokiSink struct {
 	Key     []string
 	apiAddr string
 
-	httpClient *http.Client
+	httpClient *http.Client // TODO: client pool
 }
 
 func NewLoki(httpClient *http.Client, Key []string, apiAddr string) zap.Sink {
