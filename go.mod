@@ -3,13 +3,13 @@ module go.x2ox.com/blackdatura
 go 1.17
 
 require (
-	github.com/Shopify/sarama v1.30.0
-	github.com/gin-gonic/gin v1.7.6
+	github.com/Shopify/sarama v1.30.1
+	github.com/gin-gonic/gin v1.7.7
 	github.com/go-redis/redis/v8 v8.11.4
-	github.com/gofiber/fiber/v2 v2.22.0
-	go.uber.org/zap v1.19.1
+	github.com/gofiber/fiber/v2 v2.24.0
+	go.uber.org/zap v1.20.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
-	gorm.io/gorm v1.22.3
+	gorm.io/gorm v1.22.4
 )
 
 require (
@@ -33,7 +33,7 @@ require (
 	github.com/jcmturner/gokrb5/v8 v8.4.2 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
-	github.com/jinzhu/now v1.1.2 // indirect
+	github.com/jinzhu/now v1.1.3 // indirect
 	github.com/json-iterator/go v1.1.9 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/leodido/go-urn v1.2.0 // indirect
