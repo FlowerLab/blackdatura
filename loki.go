@@ -5,12 +5,10 @@ package blackdatura
 import (
 	"bytes"
 	"encoding/json"
-	"net"
 	"net/http"
 	"net/url"
 	"time"
 
-	"github.com/go-redis/redis/v8"
 	"go.uber.org/zap"
 )
 
@@ -33,42 +31,24 @@ func newLokiRequest() *lokiRequest {
 }
 
 type LokiSink struct {
-	Client  *redis.Client
 	Key     []string
 	apiAddr string
 
 	httpClient *http.Client
 }
 
-func NewLoki() zap.Sink {
-	var i LokiSink
-	i.httpClient = &http.Client{
-		Transport: &http.Transport{
-			Proxy: http.ProxyFromEnvironment,
-			DialContext: (&net.Dialer{
-				Timeout:   30 * time.Second,
-				KeepAlive: 30 * time.Second,
-			}).DialContext,
-			ForceAttemptHTTP2:     true,
-			MaxIdleConns:          100,
-			IdleConnTimeout:       90 * time.Second,
-			TLSHandshakeTimeout:   10 * time.Second,
-			ExpectContinueTimeout: 1 * time.Second,
-			MaxConnsPerHost:       100,
-			MaxIdleConnsPerHost:   100,
-		},
-		CheckRedirect: nil,
-		Jar:           nil,
-		Timeout:       30 * time.Second,
+func NewLoki(httpClient *http.Client, Key []string, apiAddr string) zap.Sink {
+	return &LokiSink{
+		Key:        Key,
+		apiAddr:    apiAddr,
+		httpClient: httpClient,
 	}
-
-	return i
 }
 
 func (r LokiSink) Sink(*url.URL) (zap.Sink, error) { return r, nil }
 
 // Close implement zap.Sink func Close
-func (r LokiSink) Close() error { return r.Client.Close() }
+func (r LokiSink) Close() error { return nil }
 
 // Write implement zap.Sink func Write
 func (r LokiSink) Write(b []byte) (n int, err error) {
